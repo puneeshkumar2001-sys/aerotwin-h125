@@ -1,3 +1,17 @@
+# Add at the VERY TOP of app.py
+import os
+import sys
+
+# Create directories if they don't exist
+os.makedirs('data', exist_ok=True)
+os.makedirs('models', exist_ok=True)
+
+# Initialize database on first run
+if not os.path.exists('data/production.db'):
+    from database import db
+    from utils.quality_models import predictor
+    predictor.train()
+
 import streamlit as st
 import pandas as pd
 import numpy as np
