@@ -4,4 +4,4 @@ numpy
 plotly
 scikit-learn
 sqlalchemy
-bcrypt==4.0.1
+
