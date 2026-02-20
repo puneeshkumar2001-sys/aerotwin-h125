@@ -1,4 +1,5 @@
 import sqlite3
+import os
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
@@ -9,6 +10,8 @@ from config import Config
 class ProductionDatabase:
     def __init__(self, db_path=Config.DATABASE_PATH):
         self.db_path = db_path
+        # Ensure directory exists
+        os.makedirs(os.path.dirname(self.db_path), exist_ok=True)
         self.init_database()
     
     @contextmanager
