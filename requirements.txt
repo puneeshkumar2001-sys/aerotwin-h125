@@ -4,3 +4,4 @@ numpy
 plotly
 scikit-learn
 sqlalchemy
+pysqlite3-binary
