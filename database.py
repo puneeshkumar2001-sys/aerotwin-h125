@@ -186,13 +186,14 @@ class ProductionDatabase:
         cursor = conn.cursor()
         cursor.execute("SELECT COUNT(*) FROM users")
         if cursor.fetchone()[0] == 0:
-            # Default password: admin123 (change immediately)
-            from auth import hash_password
-            cursor.execute('''
-                INSERT INTO users (username, password_hash, full_name, role, is_active)
-                VALUES (?, ?, ?, ?, ?)
-            ''', ('admin', hash_password('admin123'), 'System Administrator', 'admin', 1))
-            conn.commit()
+            # Simple password - just for demo
+           simple_password = "admin123"  # Plain text for demo
+           cursor.execute('''
+               INSERT INTO users (username, password_hash, full_name, role, is_active)
+               VALUES (?, ?, ?, ?, ?)
+        ''', ('admin', simple_password, 'System Administrator', 'admin', 1))
+        conn.commit()
+        print("✅ Default admin created")
     
     def log_event(self, event_type, description, unit_id=None, station_id=None, user_id=None, data=None):
         with self.get_connection() as conn:
