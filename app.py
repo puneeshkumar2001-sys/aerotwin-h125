@@ -1,6 +1,17 @@
 # Add at the VERY TOP of app.py
 import os
-import sys
+import streamlit as st
+
+# FORCE CREATE data folder and database
+os.makedirs("data", exist_ok=True)
+os.makedirs("models", exist_ok=True)
+
+# Create empty database file if it doesn't exist
+if not os.path.exists("data/production.db"):
+    import sqlite3
+    conn = sqlite3.connect("data/production.db")
+    conn.close()
+    print("✅ Created database file")
 
 import streamlit as st
 import pandas as pd
